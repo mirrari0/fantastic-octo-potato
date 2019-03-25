@@ -11,21 +11,27 @@ import org.junit.Assert.*
  */
 class FizzbuzzTests {
     @Test
-    fun `when given a one, returns one`() {
-        assertEquals("1", Fizzbuzz().playGame(1))
+    fun `when given a number that isn't a multiple of three or five, returns the number`() {
+        val num = getMultipleOf(three = false, five = false, multiplier = 1)
+        assertEquals(num.toString(), Fizzbuzz().playGame(num))
     }
 
     @Test
     fun `when given a multiple of three and not five, returns fizz`() {
-        assertEquals("Fizz", Fizzbuzz().playGame(getMultipleOf(three = true, five = false, multipier = 3)))
+        assertEquals("Fizz", Fizzbuzz().playGame(getMultipleOf(three = true, five = false, multiplier = 3)))
     }
 
     @Test
     fun `when given a multiple of five and not three, returns buzz`() {
-        assertEquals("Buzz", Fizzbuzz().playGame(getMultipleOf(three = false, five = true, multipier = 5)))
+        assertEquals("Buzz", Fizzbuzz().playGame(getMultipleOf(three = false, five = true, multiplier = 5)))
     }
 
-    private fun getMultipleOf(three: Boolean, five: Boolean, multipier: Int): Int {
+    @Test
+    fun `when given a multiple of five and three, returns fizzbuzz`() {
+        assertEquals("FizzBuzz", Fizzbuzz().playGame(getMultipleOf(three = false, five = false, multiplier = 15)))
+    }
+
+    private fun getMultipleOf(three: Boolean, five: Boolean, multiplier: Int): Int {
         var number: Int = (Math.random() * 100).toInt()
         while (true) {
             val starting = number;
@@ -38,6 +44,6 @@ class FizzbuzzTests {
             if (starting == number) break
         }
 
-        return number * multipier
+        return number * multiplier
     }
 }
