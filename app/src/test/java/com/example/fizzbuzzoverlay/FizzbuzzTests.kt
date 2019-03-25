@@ -12,7 +12,7 @@ import org.junit.Assert.*
 class FizzbuzzTests {
     @Test
     fun `when given a number that isn't a multiple of three or five, returns the number`() {
-        val num = getMultipleOf(three = false, five = false, multiplier = 1)
+        val num = getMultipleOf(three = true, five = true, multiplier = 1)
         assertEquals(num.toString(), Fizzbuzz().playGame(num))
     }
 
